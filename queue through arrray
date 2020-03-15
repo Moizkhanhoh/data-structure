@@ -1,0 +1,105 @@
+
+/// queue through array
+
+#include<iostream>
+
+
+using namespace std;
+
+class Queue{
+	private:
+		int size;
+		int *arr;
+		int front ;
+		int rear;
+		int num_of_element;
+	public:
+		Queue(){
+			size=5;
+			//size=s;
+			arr = new int[size];
+			num_of_element =0;
+			rear = -1;
+			front =0;
+		}
+	
+	bool isempty(){
+		if(num_of_element==0){
+			return true;
+	
+		}
+		
+		else
+			return false;
+	}
+	
+	bool isfull(){
+		if (num_of_element==size){
+			return true;
+		}
+		else{
+			//cout<<"we here"<<endl;
+			return false;
+		}
+	}
+	
+	
+	void enqueue(int val){
+		if(isfull()){
+			cout<<"array is full "<<endl;
+		}
+		else{
+			if(rear==(size-1))
+				{
+					rear=-1;
+				}
+				arr[++rear]=val;
+				num_of_element ++;
+				cout<<val<<endl;
+			
+			
+		}
+
+}
+	
+	int dequeue(){
+		if(isempty()){
+			cout<<"under flow :"<<endl;
+			
+		}
+		else{
+		
+			int temp1;
+			 temp1=front;
+			if (front ==(size-1)){
+				front=0;
+			}
+			else{
+			
+				front ++;
+				num_of_element --;
+				return arr[temp1];
+			}
+	}
+}
+
+	
+};
+
+int main (){
+	Queue q;
+	q.enqueue(1);
+	q.enqueue(2);
+	q.enqueue(3);
+	q.enqueue(4);
+	q.enqueue(5);
+	q.enqueue(7);
+	cout<<endl;
+cout<<" dequeue val :"<<	q.dequeue()<<endl;
+cout<<	q.dequeue()<<endl;
+cout<<	q.dequeue()<<endl;
+cout<<	q.dequeue()<<endl;
+
+	
+	return 0;
+}
