@@ -1,0 +1,98 @@
+
+///   stack through linked list
+
+#include <iostream>
+using namespace std;
+
+struct node
+{
+    int value;
+    node *next;
+};
+
+
+class Stack_link_list
+{
+    private:
+         node *top, *temp ;
+         int size;
+    public:
+    Stack_link_list(int n) 
+    {  
+         size = n; 
+         top = NULL;
+         temp = NULL;
+    }
+    ~Stack_link_list()
+     {
+         temp = top;
+         while(temp != top)
+         {
+              temp = top;
+              top = top->next;
+              delete temp; 
+         }
+         delete temp;
+     }
+
+     void push(int info)
+     {
+          if(size == 0)
+          {
+              cout << "overfolow"<< endl;
+              return;
+          }
+          temp = new node;
+          temp->value = info;
+          temp->next = top;
+          top = temp;
+          size--;
+     }
+
+     void pop()
+     {
+         if(top == NULL)
+         {
+               cout<<"\nThe stack is empty!!!\n";
+               return;
+         }
+         temp = top;
+         top = top->next;
+         delete temp;
+         size++;
+     }
+
+     void print()
+     {
+         if(top==NULL)
+         {
+              cout<<"\nThe stack is empty!!!";
+              return;
+          }
+         temp = top;
+         while(temp != NULL)
+         {
+              cout << temp->value << " ";
+              temp = temp->next;
+         } 
+         cout << endl;
+    }
+};
+
+
+int main()
+{
+      Stack_link_list a(5);
+     
+      a.push(1);
+      a.push(2);
+      a.push(3);
+      a.push(4);
+      cout << " data after pushing\n"<< endl;
+      a.print();
+      
+      a.pop();
+      cout << "\n data after poping \n"<<endl;
+      a.print();
+      return 0;
+}
