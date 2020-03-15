@@ -1,0 +1,97 @@
+// stack
+
+#include<iostream>
+using namespace std;
+
+
+
+const int size = 10;
+
+class Stack{
+int *top;
+int *s;
+
+public:
+Stack();
+void push(int val);
+int pop();
+bool isfull();
+bool isempty();
+
+};
+
+Stack::Stack()
+{
+s = new int[size];
+top = NULL;
+}
+
+void Stack::push(int val)
+{	
+
+if(isfull())
+{
+cout << "stack is full can not push " << endl;
+}
+else if(!isfull())
+{
+top = top+1;
+*top = val;
+}
+
+}
+
+int Stack::pop(){
+if(isempty())
+{
+cout << "can not pop stack is empty " << endl;
+}
+if(!isempty())
+{
+return *top;
+top = top-1;
+}
+
+}
+
+bool Stack::isfull(){
+if(top >= (s+size))
+{
+return true;
+}
+else
+return false;
+
+}
+
+bool Stack::isempty()
+{
+if(top == NULL)
+{
+return true;
+}
+return false;
+}
+
+
+
+
+int main()
+{
+Stack s;
+s.push(1);
+s.push(2);
+s.push(3);
+s.push(4);
+s.push(5);
+s.push(6);
+s.push(7);
+s.push(8);
+s.push(9);
+s.push(10);
+s.push(11);
+s.push(12);
+cout << s.pop();
+
+return 0;
+}
