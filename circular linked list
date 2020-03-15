@@ -1,0 +1,162 @@
+
+// circular linked list 
+// insertion 
+// deletion 
+// print 
+
+#include<iostream>
+using namespace std;
+
+
+class Node{
+	
+	public:
+		int value;
+		Node *next;
+	
+};
+
+class c_linked_list{
+	private:
+		Node *head;
+		Node *tail;
+		Node *current;
+	public:
+	c_linked_list(){
+		head =NULL;
+		tail=NULL;
+		current = NULL;
+	}	
+		
+void insert(int value){
+	Node *temp=new Node;
+	
+
+		if(head == NULL) {
+       head = new Node;
+       head->value = value;
+       head->next = head;
+       current = head;
+       return;
+   }
+	
+   temp->value = value;
+   current ->next=temp;
+   temp->next = head;
+	current=current->next;
+
+   return;
+}
+
+void add(int val){
+	Node *temp1,*q;
+	current = head;
+	for (int i=0;i<3;i++){
+		//cout<<"temp val "<<current->value<<endl;
+		current=current->next;
+	}
+	temp1=current->next;
+	//cout<<current->value<<endl;
+	//cout<<temp1->value<<endl;
+	q=new Node;
+	q->value=5;
+	//cout<<"q next value  "<<temp1->next->value;
+	q->next=temp1;
+	current->next=q;
+	
+}
+			
+void print(){
+	
+
+    if(head->next== head) {
+     	cout << head->value;
+	return;
+    }
+    current =head;
+    cout<<" [ ";
+    cout<<current ->value<<" ";
+    current =current->next;
+    while(current != head) {
+        cout << current->value << " ";
+        current = current->next; 
+    }
+    cout << endl;
+}
+	
+	
+	void Delete(int val ){
+		int length=0;
+		
+		Node *temp=head->next;
+		if( length ==0){
+		cout<<"list is empty "<<endl;
+		return ;
+	}
+		if(head->value==val && head->next==head){
+		delete head;
+		head=NULL;
+		length--;
+	}
+	
+		if (head->value==val && head->next!=head){
+		temp=head;
+		Node *n=NULL;
+		n=get_tail();
+		head=head->next;
+		delete temp;
+		temp=NULL;
+		n->next=head;
+		length--;
+		return;
+		
+	}
+	current=head;
+	while (current->next !=head){
+		if(temp->value==val){
+			current->next=temp->next;
+			delete temp;
+			temp=NULL;
+			length--;
+			return;
+		}
+	}
+}	
+	
+	void get_tail(){
+		current=head;
+		while(current->next!=head){
+			current=current->next;
+		}
+		return ;
+	}
+	
+	
+	
+
+};
+
+int main(){
+	c_linked_list  l;
+	l.insert(1);
+	l.insert(2);
+	l.insert(3);
+	l.insert(4);
+	l.insert(6);
+	l.insert(7);
+	l.insert(8);
+	l.insert(9);
+	l.insert(10);
+	cout<<"1 to 10 without 5";
+	l.print();
+	l.add(5);
+	cout<<"adding 5 to list ";
+	l.print();
+	l.get_tail();
+	l.Delete(5 );
+	l.print();
+}
+
+
+
+
