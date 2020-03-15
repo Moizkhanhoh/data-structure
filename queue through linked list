@@ -1,0 +1,100 @@
+
+// queue through linked list
+
+#include<iostream>
+using namespace std;
+
+class Node{
+	public:
+	int val;
+	Node *next;
+};
+
+class queue{
+	Node *front;
+	Node *rear;
+	int  size;
+	Node * temp;
+	int count;
+	
+	public:
+		queue(){
+			front = NULL;
+			rear = NULL;
+			temp = NULL;
+			size = 10;
+			count=0;
+		}
+		
+	void equeue(int value){
+		if(front == NULL){
+			front = new Node;
+			front->val =value;
+			front->next=NULL;
+			
+			rear = front;
+			cout<<"enqueue linked list is " <<" " << rear->val << " ";
+			count++;
+			return;
+			//cout<<rear->val<<endl;
+		}
+		if(count<=size){
+			temp=new Node ;
+		temp->val=value;
+		temp->next=NULL;
+		rear->next =temp;
+		rear= rear->next;
+		cout << " " << rear->val << " ";
+		count++;
+		return;
+			
+		}
+		cout<<"overflow cant be equeue more : "<<endl;
+		
+		
+		
+	}		
+	int dequeue(){
+		if(front == NULL){
+			cout<<"there is no linked list or under flow "<<endl;
+			
+		}
+		Node *temp1 = front;
+		front = front->next;
+		int val=temp1->val;
+		delete temp1;
+		temp1 = NULL;
+		return val;
+	}		
+		
+};
+
+int main(){
+	queue q;
+	q.equeue(1);
+	q.equeue(2);
+	q.equeue(3);
+	q.equeue(4);
+	q.equeue(5);
+	q.equeue(6);
+	q.equeue(7);
+	q.equeue(8);
+	q.equeue(9);
+	q.equeue(10);
+	q.equeue(11);
+	cout<<endl;
+cout<<	q.dequeue()<<endl;
+cout<<	q.dequeue()<<endl;
+cout<<	q.dequeue()<<endl;
+cout<<	q.dequeue()<<endl;
+cout<<	q.dequeue()<<endl;
+cout<<	q.dequeue()<<endl;
+cout<<	q.dequeue()<<endl;
+cout<<	q.dequeue()<<endl;
+cout<<	q.dequeue()<<endl;
+cout<<	q.dequeue()<<endl;
+cout<<	q.dequeue()<<endl;
+//cout<<	q.dequeue()<<endl;
+	
+	return 0;
+}
